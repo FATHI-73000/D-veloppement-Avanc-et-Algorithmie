@@ -15,10 +15,10 @@
             -----------------------------------
              ▼                                ▼
      ---------------                   ---------------
-     │ HumanPlayer
-       │ 1+2                  │           AIPlayer  │
-     │-------------│                   │-------------│
-     │ + getInput)│  ← reçoit  │        + computeMove() │ ← calcule les coups 
+     │ HumanPlayer |                   |              |
+     │ 1 ou 2      |                   |    AIPlayer  │
+     │-------------│                   │------------- │
+     │ + getInput)│  ← reçoit           + computeMove() │ ← calcule les coups 
      ---------------                  ----------------     automatiquement
              ▲    les coups du joueur                      avec un algorithme.
              │
