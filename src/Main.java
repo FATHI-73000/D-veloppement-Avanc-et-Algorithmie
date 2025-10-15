@@ -1,3 +1,5 @@
+import java.sql.SQLOutput;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -6,7 +8,11 @@ public class Main {
 
           System.out.println(thisCell.getRepresentation());
 
-          TicTacToe thisTicTacToe = new TicTacToe();
+
+          Player player = new Player("X");
+
+
+          TicTacToe thisTicTacToe = new TicTacToe(player);
         thisTicTacToe.setCell(0, 0, " F ");
         thisTicTacToe.setCell(0, 1, " A ");
         thisTicTacToe.setCell(0, 2, " T ");
@@ -17,6 +23,8 @@ public class Main {
         thisTicTacToe.setCell(2, 1, " T ");
         thisTicTacToe.setCell(2, 2, " H ");
 
+        thisTicTacToe.setOwner(1, 1, player);
+        System.out.println("Plateau TicTacToe après capture de la case 1 1 :");
         System.out.println("Plateau TicTacToe");
           thisTicTacToe.display();
     }
