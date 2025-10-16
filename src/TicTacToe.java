@@ -4,10 +4,13 @@ public class TicTacToe {
 
     private final int size = 3; // taille du plateau
     private Cell[][] board;
-    Player Player ;
+    Player Player;
+    Player player1;
+    Player player2;
+    Player currentPlayer;
 
     // Constructeur
-    public TicTacToe(Player player) {
+    public TicTacToe(Player player1, Player player) {
         this.Player = player;
         board = new Cell[size][size];
         for (int i = 0; i < size; i++) {
@@ -15,6 +18,12 @@ public class TicTacToe {
                 board[i][j] = new Cell();
             }
         }
+    }
+
+    public TicTacToe() {
+        this.player1 = new Player("X");
+        this.player2 = new Player("O");
+        this.currentPlayer = player1;
     }
 
 
@@ -30,6 +39,7 @@ public class TicTacToe {
             }
         }
     }
+
     // Méthode pour modifier une cellule
     public void setCell(int i, int j, String s) {
         board[i][j].setValue(s);
@@ -39,6 +49,7 @@ public class TicTacToe {
     public Player getPlayer() {
         return Player;
     }
+
     public int[] getMoveFromPlayer() {
         Scanner sc = new Scanner(System.in);
         int row, col;
@@ -67,6 +78,7 @@ public class TicTacToe {
 
         return new int[]{row, col};
     }
+
     public void setOwner(int row, int col, Player player) {
         // Récupère la représentation du joueur : " X " ou " O "
         String symbol = player.getRepresentation();
@@ -75,7 +87,30 @@ public class TicTacToe {
         board[row][col].setValue(symbol);
     }
 
-}
+    public void play(Player player1, Player player2) {
 
+        currentPlayer = player1; // utilise la variable de la classe
+
+        for (int turn = 0; turn < size * size; turn++) {
+            System.out.println("tour " + (turn + 1));
+            display();
+
+            Player = currentPlayer; // met à jour pour getMoveFromPlayer()
+            System.out.println("c'est au tour du joueur " + currentPlayer.getRepresentation());
+            int[] move = getMoveFromPlayer();
+            setOwner(move[0], move[1], currentPlayer);
+
+            // Changement de joueur
+            if (currentPlayer == player1) {
+                currentPlayer = player2;
+            } else {
+                currentPlayer = player1;
+            }
+        }
+
+        System.out.println("Fin de la partie, toutes les cases sont remplies.");
+        display();
+    }
+}
 
 
