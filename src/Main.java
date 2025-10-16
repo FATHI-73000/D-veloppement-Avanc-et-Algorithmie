@@ -1,5 +1,3 @@
-import java.sql.SQLOutput;
-
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -19,4 +17,7 @@ public class Main {
 
         thisTicTacToe.play(player1,player2);
     }
+
+
+
 }

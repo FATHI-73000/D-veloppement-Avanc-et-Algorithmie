@@ -95,12 +95,19 @@ public class TicTacToe {
             System.out.println("tour " + (turn + 1));
             display();
 
-            Player = currentPlayer; // met à jour pour getMoveFromPlayer()
+
             System.out.println("c'est au tour du joueur " + currentPlayer.getRepresentation());
             int[] move = getMoveFromPlayer();
             setOwner(move[0], move[1], currentPlayer);
 
-            // Changement de joueur
+
+            if (isOver()) {
+                System.out.println("Fin de la partie ! Le joueur " + currentPlayer.getRepresentation() + " a gagné !");
+                display();
+                return;
+            }
+
+
             if (currentPlayer == player1) {
                 currentPlayer = player2;
             } else {
@@ -111,6 +118,56 @@ public class TicTacToe {
         System.out.println("Fin de la partie, toutes les cases sont remplies.");
         display();
     }
+
+    public boolean isOver() {
+        for (int i = 0; i < size; i++) {
+            if (!board[i][0].getRepresentation().equals("   ") &&
+                    board[i][0].getRepresentation().equals(board[i][1].getRepresentation()) &&
+                    board[i][0].getRepresentation().equals(board[i][2].getRepresentation())) {
+                return true;
+            }
+        }
+        for (int j = 0; j < size; j++) {
+            if (!board[0][j].getRepresentation().equals("   ") &&
+                    board[0][j].getRepresentation().equals(board[1][j].getRepresentation()) &&
+                    board[0][j].getRepresentation().equals(board[2][j].getRepresentation())) {
+                return true;
+
+            }
+
+
+        }
+        if (!board[0][0].getRepresentation().equals("   ") &&
+                board[0][0].getRepresentation().equals(board[1][1].getRepresentation()) &&
+                board[0][0].getRepresentation().equals(board[2][2].getRepresentation())) {
+            return true;
+
+
+        }
+        if (!board[0][2].getRepresentation().equals("   ") &&
+                board[0][2].getRepresentation().equals(board[1][1].getRepresentation()) &&
+                board[0][2].getRepresentation().equals(board[2][0].getRepresentation())) {
+            return true;
+
+
+        }
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (board[i][j].getRepresentation().equals("   ")) {
+                    return false;
+
+
+                }
+
+            }
+        }
+
+        return true;
+
+
+    }
+
 }
 
 
