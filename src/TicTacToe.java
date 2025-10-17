@@ -4,10 +4,10 @@ public class TicTacToe {
 
     private final int size = 3; // taille du plateau
     private Cell[][] board;
-    Player Player;
-    Player player1;
-    Player player2;
-    Player currentPlayer;
+    private Player Player;
+    private Player player1;
+    private Player player2;
+    private Player currentPlayer;
 
     // Constructeur
     public TicTacToe(Player player1, Player player) {
