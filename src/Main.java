@@ -1,24 +1,25 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        Cell thisCell = new Cell();
-        System.out.println(thisCell.getRepresentation());
 
-        Player player1 = new Player(" X ");
-        Player player2 = new Player(" O ");
+    public class Main {
+        public static void main(String[] args) {
+            Cell thisCell = new Cell();
+            System.out.println(thisCell.getRepresentation());
 
-        TicTacToe thisTicTacToe = new TicTacToe(player1,player2);
-        thisTicTacToe.display();
-        thisTicTacToe.setOwner(1, 1, player1);
+            Player player1 = new Player(" X ");
+            Player player2 = new Player(" O ");
+            Player[] players = new InteractionUtilisateur().choosePlayers();
+            player1 = players[0];
+            player2 = players[1];
+            System.out.println("Joueur 1 : " + player1.getRepresentation());
+            System.out.println("Joueur 2 : " + player2.getRepresentation());
 
-        System.out.println("Plateau TicTacToe après capture de la case 11 :");
-        System.out.println("Plateau TicTacToe");
-        thisTicTacToe.display();
+            TicTacToe thisTicTacToe = new TicTacToe(player1, player2);
+            thisTicTacToe.display();
+            thisTicTacToe.setOwner(1, 1, player1);
 
-        thisTicTacToe.play(player1,player2);
+            System.out.println("Plateau TicTacToe après capture de la case 11 :");
+            System.out.println("Plateau TicTacToe");
+            thisTicTacToe.display();
+
+            thisTicTacToe.play(player1, player2);
+        }
     }
-
-
-
-}

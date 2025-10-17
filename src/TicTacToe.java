@@ -1,17 +1,16 @@
-import java.util.Scanner;
-
 public class TicTacToe {
 
-    private final int size = 3; // taille du plateau
-    private Cell[][] board;
+    private final int size = 3;
+    protected Cell[][] board;
     private Player Player;
     private Player player1;
     private Player player2;
     private Player currentPlayer;
 
-    // Constructeur
     public TicTacToe(Player player1, Player player) {
         this.Player = player;
+        this.player1 = player1;
+        this.player2 = player;
         board = new Cell[size][size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -20,30 +19,19 @@ public class TicTacToe {
         }
     }
 
-    public TicTacToe() {
-        this.player1 = new Player("X");
-        this.player2 = new Player("O");
-        this.currentPlayer = player1;
-    }
-
-
     public void display() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                System.out.print(board[i][j].getRepresentation()); // affiche la case
-                if (j < size - 1) System.out.print("|");           // séparateur de colonnes
+                System.out.print(board[i][j].getRepresentation());
+                if (j < size - 1) System.out.print("|");
             }
-            System.out.println(); // nouvelle ligne après chaque ligne du plateau
-            if (i < size - 1) {
-                System.out.println("---+---+---"); // séparateur de lignes
-            }
+            System.out.println();
+            if (i < size - 1) System.out.println("---+---+---");
         }
     }
 
-    // Méthode pour modifier une cellule
     public void setCell(int i, int j, String s) {
         board[i][j].setValue(s);
-
     }
 
     public Player getPlayer() {
@@ -51,55 +39,54 @@ public class TicTacToe {
     }
 
     public int[] getMoveFromPlayer() {
-        Scanner sc = new Scanner(System.in);
+        java.util.Scanner sc = new java.util.Scanner(System.in);
         int row, col;
 
-        while (true) { // répète tant que le joueur n'a pas choisi une case valide
+        while (true) {
             System.out.print("Joueur " + Player.getRepresentation() + ", ligne : ");
-            row = sc.nextInt(); // lit directement un entier
-
+            row = sc.nextInt();
             System.out.print("Joueur " + Player.getRepresentation() + ", colonne : ");
-            col = sc.nextInt(); // lit directement un entier
+            col = sc.nextInt();
 
-            // Vérifie que la ligne et la colonne sont dans le plateau
             if (row < 0 || row >= size || col < 0 || col >= size) {
                 System.out.println("Coordonnées hors plateau, réessayez.");
                 continue;
             }
 
-            // Vérifie que la case est libre
             if (!board[row][col].getRepresentation().equals("   ")) {
                 System.out.println("Case déjà occupée, réessayez.");
                 continue;
             }
 
-            break; // coup valide trouvé
+            break;
         }
 
         return new int[]{row, col};
     }
 
     public void setOwner(int row, int col, Player player) {
-        // Récupère la représentation du joueur : " X " ou " O "
         String symbol = player.getRepresentation();
-
-        // Modifie la cellule correspondante pour y mettre le symbole du joueur
         board[row][col].setValue(symbol);
     }
 
     public void play(Player player1, Player player2) {
-
-        currentPlayer = player1; // utilise la variable de la classe
+        currentPlayer = player1;
 
         for (int turn = 0; turn < size * size; turn++) {
             System.out.println("tour " + (turn + 1));
             display();
 
-
             System.out.println("c'est au tour du joueur " + currentPlayer.getRepresentation());
-            int[] move = getMoveFromPlayer();
-            setOwner(move[0], move[1], currentPlayer);
 
+            int[] move;
+            if (currentPlayer instanceof ArtificialPlayer) {
+                move = ((ArtificialPlayer) currentPlayer).getMoveFromPlayer(this);
+            } else {
+                Player = currentPlayer;
+                move = getMoveFromPlayer();
+            }
+
+            setOwner(move[0], move[1], currentPlayer);
 
             if (isOver()) {
                 System.out.println("Fin de la partie ! Le joueur " + currentPlayer.getRepresentation() + " a gagné !");
@@ -107,7 +94,7 @@ public class TicTacToe {
                 return;
             }
 
-
+            // Remplacement du ternaire par un if/else
             if (currentPlayer == player1) {
                 currentPlayer = player2;
             } else {
@@ -127,47 +114,35 @@ public class TicTacToe {
                 return true;
             }
         }
+
         for (int j = 0; j < size; j++) {
             if (!board[0][j].getRepresentation().equals("   ") &&
                     board[0][j].getRepresentation().equals(board[1][j].getRepresentation()) &&
                     board[0][j].getRepresentation().equals(board[2][j].getRepresentation())) {
                 return true;
-
             }
-
-
         }
+
         if (!board[0][0].getRepresentation().equals("   ") &&
                 board[0][0].getRepresentation().equals(board[1][1].getRepresentation()) &&
                 board[0][0].getRepresentation().equals(board[2][2].getRepresentation())) {
             return true;
-
-
         }
+
         if (!board[0][2].getRepresentation().equals("   ") &&
                 board[0][2].getRepresentation().equals(board[1][1].getRepresentation()) &&
                 board[0][2].getRepresentation().equals(board[2][0].getRepresentation())) {
             return true;
-
-
         }
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (board[i][j].getRepresentation().equals("   ")) {
                     return false;
-
-
                 }
-
             }
         }
 
         return true;
-
-
     }
-
 }
-
-
