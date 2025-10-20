@@ -7,8 +7,6 @@
             Player player1 = new Player(" X ");
             Player player2 = new Player(" O ");
             Player[] players = new InteractionUtilisateur().choosePlayers();
-            player1 = players[0];
-            player2 = players[1];
             System.out.println("Joueur 1 : " + player1.getRepresentation());
             System.out.println("Joueur 2 : " + player2.getRepresentation());
 
