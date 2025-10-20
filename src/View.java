@@ -1,6 +1,6 @@
 public class View {
 
-    // Affiche le plateau
+
     public static void afficherPlateau(Cell[][] board) {
         int size = board.length;
         for (int i = 0; i < size; i++) {
