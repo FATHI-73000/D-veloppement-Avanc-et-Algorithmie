@@ -1,7 +1,7 @@
 package game;
 
 public abstract class Player {
-    protected String representation;
+    private String representation;
 
     public Player(String representation) {
         this.representation = representation;

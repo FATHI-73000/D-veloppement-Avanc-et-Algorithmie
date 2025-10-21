@@ -5,8 +5,8 @@ import game.Player;
 import memory.Memory;
 import pfc.PFCGame;
 import tictactoe.TicTacToeGame;
-import tictactoe.ArtificialPlayer;
-import tictactoe.HumanPlayer;
+import player.ArtificialPlayer;
+import player.HumanPlayer;
 
 import java.util.Scanner;
 

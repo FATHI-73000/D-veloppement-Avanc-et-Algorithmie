@@ -1,7 +1,9 @@
-package tictactoe;
+package player;
 
 import game.Game;
 import game.Player;
+import tictactoe.TicTacToeGame;
+
 import java.util.Random;
 
 public class ArtificialPlayer extends Player {

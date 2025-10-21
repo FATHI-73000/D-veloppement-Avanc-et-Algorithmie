@@ -3,6 +3,7 @@ package tictactoe;
 import game.Cell;
 import game.Game;
 import game.Player;
+import player.ArtificialPlayer;
 
 public class TicTacToeGame implements Game {
 
