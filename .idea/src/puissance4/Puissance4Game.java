@@ -3,11 +3,11 @@ package pfc;
 
 import game.Game;
 
-public class PFCGame implements Game {
+public class Puissance4Game implements Game {
 
     @Override
     public void play() {
-        System.out.println("Pierre - Feuille - Ciseaux : à implémenter !");
+        System.out.println("Puissance4: à implémenter !");
     }
 
     @Override

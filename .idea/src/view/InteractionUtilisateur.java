@@ -80,8 +80,8 @@ public class InteractionUtilisateur {
         while (true) {
             System.out.println("\n=== Menu des Jeux ===");
             System.out.println("1 : Rejouer à TicTacToe");
-            System.out.println("2 : Lancer Memory");
-            System.out.println("3 : Lancer Pierre-Feuille-Ciseaux");
+            System.out.println("2 : Lancer ");
+            System.out.println("3 : Lancer Puissance4");
             System.out.println("0 : Quitter");
             System.out.print("Votre choix : ");
             int choix;
@@ -98,12 +98,13 @@ public class InteractionUtilisateur {
                     newGame.play();
                 }
                 case 2 -> {
-                    Game memory = new Memory();
-                    memory.play();
+                    Player[] gomokuPlayers = choosePlayers();
+                    Game gomoku = new gomoku.GomokuGame(gomokuPlayers[0], gomokuPlayers[1]);
+                    gomoku.play();
                 }
                 case 3 -> {
-                    Game pfc = new PFCGame();
-                    pfc.play();
+                    Game puissance4 = new puissance4.Puissance4Game();
+                    puissance4.play();
                 }
                 case 0 -> {
                     System.out.println("Fin du programme.");
