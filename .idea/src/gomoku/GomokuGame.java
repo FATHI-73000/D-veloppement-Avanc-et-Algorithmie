@@ -60,7 +60,7 @@ public class GomokuGame implements Game {
                 return;
             }
 
-            // Remplacement du ternaire par if-else
+            // Alternance des joueurs
             if (currentPlayer == player1) {
                 currentPlayer = player2;
             } else {

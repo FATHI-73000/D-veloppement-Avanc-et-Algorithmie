@@ -4,7 +4,8 @@ import game.Cell;
 import game.Player;
 import tictactoe.TicTacToeGame;
 import view.InteractionUtilisateur;
-
+import gomoku.GomokuGame;
+import puissance4.Puissance4Game;
 public class Main {
     public static void main(String[] args) {
         InteractionUtilisateur interaction = new InteractionUtilisateur();

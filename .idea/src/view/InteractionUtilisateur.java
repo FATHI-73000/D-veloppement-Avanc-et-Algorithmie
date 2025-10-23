@@ -2,8 +2,8 @@ package view;
 
 import game.Game;
 import game.Player;
-import memory.Memory;
-import pfc.PFCGame;
+import puissance4.Puissance4Game;
+import gomoku.GomokuGame;
 import player.ArtificialPlayer;
 import player.HumanPlayer;
 
@@ -80,7 +80,7 @@ public class InteractionUtilisateur {
         while (true) {
             System.out.println("\n=== Menu des Jeux ===");
             System.out.println("1 : Rejouer à TicTacToe");
-            System.out.println("2 : Lancer ");
+            System.out.println("2 : Lancer GomokuGame ");
             System.out.println("3 : Lancer Puissance4");
             System.out.println("0 : Quitter");
             System.out.print("Votre choix : ");
@@ -99,11 +99,12 @@ public class InteractionUtilisateur {
                 }
                 case 2 -> {
                     Player[] gomokuPlayers = choosePlayers();
-                    Game gomoku = new gomoku.GomokuGame(gomokuPlayers[0], gomokuPlayers[1]);
+                    Game gomoku = new GomokuGame(gomokuPlayers[0], gomokuPlayers[1]);
                     gomoku.play();
                 }
                 case 3 -> {
-                    Game puissance4 = new puissance4.Puissance4Game();
+                    Player[] puissance4Players = choosePlayers();
+                    Game puissance4 = new Puissance4Game(puissance4Players[0], puissance4Players[1]);
                     puissance4.play();
                 }
                 case 0 -> {
